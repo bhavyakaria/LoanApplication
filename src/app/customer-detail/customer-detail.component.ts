@@ -25,7 +25,7 @@ export class CustomerDetailComponent implements OnInit {
   constructor(private fb: FormBuilder, private dataService: DataService) {
     this.cusForm = fb.group({
       'customerName': [null, Validators.required],
-      'customerMobileNumber': [null, [Validators.required, Validators.minLength(10)]],
+      'customerMobileNumber': [null, [Validators.required, Validators.pattern('[6-9]\\d{9}')]],
       'customerPanNumber': [null, [Validators.required, CustomValidator.panNumberValidator]],
       'customerEmailId': [null, [Validators.required, Validators.email]],
       'customerSalary': [null, Validators.required],

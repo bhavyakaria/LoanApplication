@@ -12,12 +12,12 @@
 
     <!-- Customer Moble Number -->
     <label for="customerMobileNumber">Mobile Number:</label>
-    <input id="customerMobileNumber" type="number" placeholder="1234567890" class="form-control" minlength="10" maxlength="10" formControlName="customerMobileNumber" [ngClass]="{ 'is-invalid': (f.customerMobileNumber.touched ||
+    <input id="customerMobileNumber" placeholder="1234567890" class="form-control" maxlength="10" formControlName="customerMobileNumber" [ngClass]="{ 'is-invalid': (f.customerMobileNumber.touched ||
     f.customerMobileNumber.dirty) && f.customerMobileNumber.errors }">
     <!-- Customer Mobile Number Error -->
     <div *ngIf="f.customerMobileNumber.errors" class="invalid-feedback">
       <div *ngIf="f.customerMobileNumber.errors.required">Mobile Number is required</div>
-      <div *ngIf="f.customerMobileNumber.errors.minlength">Mobile Number is invalid</div>
+      <div *ngIf="f.customerMobileNumber.errors.pattern">Mobile Number is invalid</div>
     </div>
     
     <!-- Customer PAN Number -->
