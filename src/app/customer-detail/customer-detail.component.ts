@@ -25,7 +25,7 @@ export class CustomerDetailComponent implements OnInit {
   constructor(private fb: FormBuilder, private dataService: DataService) {
     this.cusForm = fb.group({
       'customerName': [null, Validators.required],
-      'customerMobileNumber': [null, [Validators.required, Validators.pattern('[6-9]\\d{9}')]],
+      'customerMobileNumber': [null, [Validators.required, CustomValidator.mobileNumberValidator]],
       'customerPanNumber': [null, [Validators.required, CustomValidator.panNumberValidator]],
       'customerEmailId': [null, [Validators.required, Validators.email]],
       'customerSalary': [null, Validators.required],
@@ -38,6 +38,7 @@ export class CustomerDetailComponent implements OnInit {
 
   ngOnInit() {
 
+    // fetching values from previous component and updating the form
     const emiData = this.dataService.getCalculatedEmiData();
     if (emiData != null) {
       this.cusForm.patchValue({
@@ -46,7 +47,7 @@ export class CustomerDetailComponent implements OnInit {
       });
     }
 
-    
+    // logic for converting loan tenure in month and year
     this.getTenureType().valueChanges.subscribe( val => {
       
       if (val === 'Year') {
@@ -84,7 +85,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   /** Getters */
-  // convenience getter for easy access to form fields
+  
   get f() { return this.cusForm.controls; }
 
   getCustomerName() {

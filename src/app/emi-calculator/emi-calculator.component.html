@@ -1,7 +1,9 @@
 <div class="container col-md-4" > 
   <h1>EMI Calculator</h1>
+  <!-- Form for Calculating EMI -->
   <form [formGroup]="rForm" (ngSubmit)="applyForLoan()">
     
+    <!-- Loan Amount -->
     <label for="loanAmount">Loan Amount:</label>
     <input id="loanAmount" type="number" placeholder="E.g. 10000" class="form-control" formControlName="loanAmount">
     
@@ -12,7 +14,7 @@
     <div class="loanTenureInput">
       <!--Input Field-->
       <input id="loanTenure" type="number" placeholder="10" step="0.25" value="0.00" class="form-control" formControlName="loanTenure">
-      <!--Month Selection Component-->
+      <!--Month/Year Selection Component-->
       <div class="tenureButton">
         <input type="radio" id="month" name="tenureType" value="Month" formchecked formControlName="tenureType"> 
         <label class="radioButton left" for="month">Mo</label>
@@ -21,13 +23,14 @@
       </div>
     </div>
 
+    <!-- Display for calculated EMI -->
     <div class="row calculatedValues" *ngIf="rForm.valid">
       <div class="col-md-12 col-centered loanEmi">
         <p>Loan EMI</p>
         <h4>{{emi | currency: 'INR'}}</h4>
       </div>
     </div>
-    
+    <!-- Submit Button -->
     <button type="submit" class="btn btn-primary apply" [disabled]="rForm.invalid">Apply</button>
   </form> 
 </div>

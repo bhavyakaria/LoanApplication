@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. Do an npm install
 3. Run `ng serve -o` for a dev server. Navigate to `http://localhost:4200/`.
 
-## Complete FLow
+## Complete Flow
 1. Created the project using the below command:
 `ng new ApplicationName --style=scss --routing`
 

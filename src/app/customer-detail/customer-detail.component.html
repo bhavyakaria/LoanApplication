@@ -1,6 +1,8 @@
 <div class="container col-md-4"> 
+  <!-- Submit Loan Application Form -->
   <form [formGroup]="cusForm" (ngSubmit)="submitLoanApplication(cusForm.value)" *ngIf="!submitted">
     <h1>Customer Details</h1>
+    
     <!-- Customer Name -->
     <label for="customerName">Name:</label>
     <input id="customerName" type="text" placeholder="E.g. Monkey D. Luffy" class="form-control" formControlName="customerName" [ngClass]="{ 'is-invalid': (f.customerName.touched ||
@@ -13,11 +15,11 @@
     <!-- Customer Moble Number -->
     <label for="customerMobileNumber">Mobile Number:</label>
     <input id="customerMobileNumber" placeholder="1234567890" class="form-control" maxlength="10" formControlName="customerMobileNumber" [ngClass]="{ 'is-invalid': (f.customerMobileNumber.touched ||
-    f.customerMobileNumber.dirty) && f.customerMobileNumber.errors }">
+    f.customerMobileNumber.dirty) && f.customerMobileNumber.hasError('invalidMobileNumber') }">
     <!-- Customer Mobile Number Error -->
     <div *ngIf="f.customerMobileNumber.errors" class="invalid-feedback">
       <div *ngIf="f.customerMobileNumber.errors.required">Mobile Number is required</div>
-      <div *ngIf="f.customerMobileNumber.errors.pattern">Mobile Number is invalid</div>
+      <div *ngIf="f.customerMobileNumber.errors.invalidMobileNumber">Mobile Number is invalid</div>
     </div>
     
     <!-- Customer PAN Number -->
@@ -76,7 +78,7 @@
       <input id="loanTenure" type="number" placeholder="12" class="form-control" formControlName="loanTenure" [ngClass]="{ 'is-invalid': (f.loanTenure.touched ||
       f.loanTenure.dirty) && f.loanTenure.errors }">
 
-      <!--Month Selection Component-->
+      <!--Month/Year Selection Component-->
       <div class="tenureButton">
         <input type="radio" id="month" name="tenureType" value="Month" formchecked formControlName="tenureType"> 
         <label class="radioButton left" for="month">Mo</label>
@@ -91,6 +93,8 @@
     
     <button class="btn btn-primary apply" [disabled]="cusForm.invalid">Apply</button>
   </form> 
+
+  <!-- Thank You Component-->
   <div class="full-height" *ngIf="submitted">
     <h3>Thank You</h3>
     <p>Your application has been submitted. Please check your mail for details.</p>

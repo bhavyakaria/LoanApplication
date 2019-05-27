@@ -28,14 +28,17 @@ export class EmiCalculatorComponent implements OnInit {
 
   ngOnInit() {
 
+    // calculated EMI with updated loan tenure
     this.getLoanTenure().valueChanges.subscribe( val => {
       this.calculateEmi();
     });
 
+    // calculated EMI with updated loan amount
     this.getLoanAmount().valueChanges.subscribe( val => {
       this.calculateEmi();
     });
     
+    // logic for converting loan tenure in month and year
     this.getTenureType().valueChanges.subscribe( val => {
       
       if (val === 'Year') {
@@ -52,7 +55,13 @@ export class EmiCalculatorComponent implements OnInit {
 
   /**
    * Calculating EMI using formula:
-   * EMI = Princicpal * Rate of Interest * 
+   * EMI = [P * R * (1 + R)^N] / [(1 + R)^N - 1]
+   * P = Principle
+   * R = Rate Of Interest
+   * N = Loan Tenure
+   * 
+   * numerator = [P * R * (1 + R)^N]
+   * denominator = [(1 + R)^N - 1]
    */
   calculateEmi() {
 
@@ -69,6 +78,9 @@ export class EmiCalculatorComponent implements OnInit {
     this.emi = numerator/denominator;
   }
 
+  /**
+   * On clicking Apply button, move to Customer Details page with data(Used Service for passing data)
+   */
   applyForLoan() {
     const data = {
       loanAmount: this.getLoanAmount(),
