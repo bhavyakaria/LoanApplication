@@ -1,1 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    margin: 0;
+    background: #f2f2f2;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 30px;
+
+    .left {
+        border-radius: 5px 0 0 5px;
+    }
+
+    .right {
+        border-radius: 0 5px 5px 0;
+    }
+
+
+    input[type=radio] {
+        display:none; 
+    }
+
+    input[type=radio] + label {
+        display:inline-block;
+        padding: 8px;
+        background-color: #e7e7e7;
+        border-color: #ddd;
+    }
+
+    input[type=radio]:checked + label { 
+        background-image: none;
+        background-color:#d0d0d0;
+    }
+
+    .loanTenureInput {
+        display: flex;
+
+        #loanTenure {
+            width: 75%;
+        }
+
+        .tenureButton {
+            width: 25%;
+        }
+    }
+
+    .tenureButton {
+        height: calc(1.5em + .75rem + 2px);
+        margin: 0 0 0 15px;
+
+        .radioButton {
+            height: calc(1.5em + .75rem + 2px);
+            width: 50%;
+            text-align: center;
+        }
+    }
+
+    .apply {
+        margin: 20px auto;
+        display: block;
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0; 
+    }
+    
+}

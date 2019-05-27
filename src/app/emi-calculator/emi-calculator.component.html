@@ -1,0 +1,33 @@
+<div class="container col-md-4" > 
+  <h1>EMI Calculator</h1>
+  <form [formGroup]="rForm" (ngSubmit)="applyForLoan()">
+    
+    <label for="loanAmount">Loan Amount:</label>
+    <input id="loanAmount" type="number" placeholder="E.g. 10000" class="form-control" formControlName="loanAmount">
+    
+    <p><strong>Annual Interest Rate taken is 30%</strong></p>
+    
+    <!--Loan Tenure-->  
+    <label for="loanTenure">Loan Tenure:</label>
+    <div class="loanTenureInput">
+      <!--Input Field-->
+      <input id="loanTenure" type="number" placeholder="10" step="0.25" value="0.00" class="form-control" formControlName="loanTenure">
+      <!--Month Selection Component-->
+      <div class="tenureButton">
+        <input type="radio" id="month" name="tenureType" value="Month" formchecked formControlName="tenureType"> 
+        <label class="radioButton left" for="month">Mo</label>
+        <input type="radio" id="year" name="tenureType"value="Year" formControlName="tenureType">
+        <label class="radioButton right" for="year">Yr</label>  
+      </div>
+    </div>
+
+    <div class="row calculatedValues" *ngIf="rForm.valid">
+      <div class="col-md-12 col-centered loanEmi">
+        <p>Loan EMI</p>
+        <h4>{{emi | currency: 'INR'}}</h4>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary apply" [disabled]="rForm.invalid">Apply</button>
+  </form> 
+</div>

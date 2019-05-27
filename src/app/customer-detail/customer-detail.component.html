@@ -1,0 +1,99 @@
+<div class="container col-md-4"> 
+  <form [formGroup]="cusForm" (ngSubmit)="submitLoanApplication(cusForm.value)" *ngIf="!submitted">
+    <h1>Customer Details</h1>
+    <!-- Customer Name -->
+    <label for="customerName">Name:</label>
+    <input id="customerName" type="text" placeholder="E.g. Monkey D. Luffy" class="form-control" formControlName="customerName" [ngClass]="{ 'is-invalid': (f.customerName.touched ||
+    f.customerName.dirty) && f.customerName.errors }">
+    <!-- Customer Name Error -->
+    <div *ngIf="f.customerName.errors" class="invalid-feedback">
+      <div *ngIf="f.customerName.errors.required">Name is required</div>
+    </div>
+
+    <!-- Customer Moble Number -->
+    <label for="customerMobileNumber">Mobile Number:</label>
+    <input id="customerMobileNumber" type="number" placeholder="1234567890" class="form-control" minlength="10" maxlength="10" formControlName="customerMobileNumber" [ngClass]="{ 'is-invalid': (f.customerMobileNumber.touched ||
+    f.customerMobileNumber.dirty) && f.customerMobileNumber.errors }">
+    <!-- Customer Mobile Number Error -->
+    <div *ngIf="f.customerMobileNumber.errors" class="invalid-feedback">
+      <div *ngIf="f.customerMobileNumber.errors.required">Mobile Number is required</div>
+      <div *ngIf="f.customerMobileNumber.errors.minlength">Mobile Number is invalid</div>
+    </div>
+    
+    <!-- Customer PAN Number -->
+    <label for="customerPanNumber">PAN Number:</label>
+    <input id="customerPanNumber" type="text" placeholder="CEQPK4956K" class="form-control"  formControlName="customerPanNumber" [ngClass]="{ 'is-invalid': (f.customerPanNumber.touched ||
+    f.customerPanNumber.dirty) && f.customerPanNumber.hasError('invalidPanNumber') }">
+    <!-- Customer PAN Number Error -->
+    <div *ngIf="f.customerPanNumber.errors" class="invalid-feedback">
+      <div *ngIf="f.customerPanNumber.errors.required">PAN Number is required</div>
+      <div *ngIf="f.customerPanNumber.errors.invalidPanNumber">PAN Number is invalid</div>
+    </div>
+
+    <!-- Customer Email Id -->
+    <label for="customerEmailId">Email:</label>
+    <input id="customerEmailId" type="text" placeholder="email@address.com" class="form-control" formControlName="customerEmailId" [ngClass]="{ 'is-invalid': (f.customerEmailId.touched ||
+    f.customerEmailId.dirty) && f.customerEmailId.errors }">
+    <!-- Customer Email Id Error -->
+    <div *ngIf="f.customerEmailId.errors" class="invalid-feedback">
+      <div *ngIf="f.customerEmailId.errors.required">Email is required</div>
+      <div *ngIf="f.customerEmailId.errors.email">Email is invalid</div>
+    </div>
+    
+    <!-- Customer Salary -->
+    <label for="customerSalary">Salary:</label>
+    <input id="customerSalary" type="number" placeholder="25000" class="form-control" formControlName="customerSalary" [ngClass]="{ 'is-invalid': (f.customerSalary.touched ||
+    f.customerSalary.dirty) && f.customerSalary.errors }">
+    <!-- Customer Salary Error-->
+    <div *ngIf="f.customerSalary.errors" class="invalid-feedback">
+      <div *ngIf="f.customerSalary.errors.required">Salary is required</div>
+    </div>
+
+    <!-- Customer Address -->
+    <label for="customerAddress">Address:</label>
+    <textarea id="customerAddress" type="text" placeholder="Brazil" row="3" class="form-control" formControlName="customerAddress" [ngClass]="{ 'is-invalid': (f.customerAddress.touched ||
+    f.customerAddress.dirty) && f.customerAddress.errors }"></textarea>
+    <!-- Customer Address Error -->
+    <div *ngIf="f.customerAddress.errors" class="invalid-feedback">
+      <div *ngIf="f.customerAddress.errors.required">Address is required</div>
+    </div>
+    
+    <!-- Applied Loan Aamount -->
+    <label for="loanAmount">Applied Amount:</label>
+    <input id="loanAmount" type="number" placeholder="15000" class="form-control" formControlName="loanAmount" [ngClass]="{ 'is-invalid': (f.loanAmount.touched ||
+    f.loanAmount.dirty) && f.loanAmount.errors }">
+    <!-- Applied Loan Amount Error-->
+    <div *ngIf="f.loanAmount.errors" class="invalid-feedback">
+      <div *ngIf="f.loanAmount.errors.required">Applied Amount is required</div>
+    </div>
+
+    <p><strong>Annual Interest Rate taken is 30%</strong></p>
+    
+    <!--Loan Tenure-->  
+    <label for="loanTenure">Applied Loan Tenure:</label>
+    <div class="loanTenureInput">
+      <!--Input Field-->
+      <input id="loanTenure" type="number" placeholder="12" class="form-control" formControlName="loanTenure" [ngClass]="{ 'is-invalid': (f.loanTenure.touched ||
+      f.loanTenure.dirty) && f.loanTenure.errors }">
+
+      <!--Month Selection Component-->
+      <div class="tenureButton">
+        <input type="radio" id="month" name="tenureType" value="Month" formchecked formControlName="tenureType"> 
+        <label class="radioButton left" for="month">Mo</label>
+        <input type="radio" id="year" name="tenureType"value="Year" formControlName="tenureType">
+        <label class="radioButton right" for="year">Yr</label>  
+      </div>
+    </div>
+    <!-- Loan Tenure Error -->
+    <div *ngIf="f.loanTenure.errors" class="invalid-feedback">
+      <div *ngIf="f.loanTenure.errors.required">Loan Tenure is required</div>
+    </div>
+    
+    <button class="btn btn-primary apply" [disabled]="cusForm.invalid">Apply</button>
+  </form> 
+  <div class="full-height" *ngIf="submitted">
+    <h3>Thank You</h3>
+    <p>Your application has been submitted. Please check your mail for details.</p>
+  </div>
+</div>
+
