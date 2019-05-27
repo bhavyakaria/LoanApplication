@@ -1,5 +1,7 @@
 # LoanApplication
 
+An EMI calculator application created with the help of reactive forms.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
 ## Building the project
@@ -16,5 +18,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 3. For Service(Used to pass data from one component to another)
 `ng g s Data`
+
+## Validations
+1. Basic required and valid email id validation added.
+2. Mobile Number(Indian) and PAN Number validation added using regex.
+
+
 
 
